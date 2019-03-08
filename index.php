@@ -22,7 +22,10 @@
 		$getBlog = $blog->getMessageAll();
 		if (!empty($getBlog)) {
 			foreach ($getBlog as $key => $value) {
-				echo $value["title"]. "<br>";
+				?>
+				<!-- 2019/03/08 詳細ページへのリンクを貼る -->
+				<a href="shosai.php?id=<?php echo $value['id']; ?>"><?php echo $value["title"]; ?></a><br>
+				<?php
 			}
 		}else{
 			echo "まだ記事がありません。";
