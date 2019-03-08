@@ -11,6 +11,10 @@
 	height: 100vw;
 	float: left;
 	padding: 12px;
+	position: fixed;
+	z-index: 3;
+	left: 0;
+	top: 0;
 }
 
 #sideBar ul li{
@@ -36,4 +40,5 @@
 	float: left;
 	width: 80%;
 	padding: 12px;
+	margin-left: 20%;
 }

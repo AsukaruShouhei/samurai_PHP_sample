@@ -16,7 +16,7 @@
 	<div id="main">
 							<!-- 2019/03/08 Limit区を使った取得制限 追加 -->
 		<h3>
-			新着記事
+			新規投稿記事
 		</h3>
 		<div>
 			<?php
@@ -43,13 +43,25 @@
 		<p style="background: red;color: #fff;"><?php if(!empty($_SESSION["ress_msg"])){	echo $_SESSION["ress_msg"];} ?></p>
 		<form action="insert/insertblog.php" method="post">
 			<input type="hidden" name="csrf_token" value="<?php echo $token; ?>"> 
-		<select name="category_id">
-			<option></option>
-		</select>
-		<br>
-		<input type="text" name="title" size="10"><br>
-		<textarea name="message" rows="3" cols="5"></textarea><br>
-		<button type="submit">送信</button>
+		<div class="form-group">
+		    <label for="exampleFormControlSelect2">投稿カテゴリを選択</label>
+		    <select class="form-control" id="exampleFormControlSelect2" name="category_id">
+		      <option>1</option>
+		      <option>2</option>
+		      <option>3</option>
+		      <option>4</option>
+		      <option>5</option>
+		    </select>
+		</div>
+		<div class="form-group">
+			<label for="exampleFormControlInput1">記事タイトル</label>
+			<input type="text" class="form-control" id="exampleFormControlInput1" name="title">
+		</div>
+		<div class="form-group">
+			<label for="exampleFormControlTextarea1">記事本文</label>
+			<textarea class="form-control" id="exampleFormControlTextarea1" rows="30" name="message"></textarea>
+		</div>
+		<button type="submit" class="btn btn-primary btn-lg btn-block">投稿する</button>
 		</form>
 
 
