@@ -1,0 +1,39 @@
+/* 
+
+
+			sideBar 
+
+
+*/
+#sideBar{
+	width: 20%;
+	background: #000080;
+	height: 100vw;
+	float: left;
+	padding: 12px;
+}
+
+#sideBar ul li{
+	margin: 12px;
+}
+
+#sideBar ul li a{
+	color: #fff;
+}
+
+
+
+
+/*
+
+
+			 main
+
+
+*/
+
+#main{
+	float: left;
+	width: 80%;
+	padding: 12px;
+}
