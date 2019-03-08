@@ -32,6 +32,21 @@ class blog
 	}
 
 	/**
+	 *  get new Blogs Limit
+	 *  @param limit integer blog get Limit defalt is null
+	 *
+	 * return 
+	 */
+	public function getMessageLimit($limit=null){
+		require_once 'functions/DbManager.php';
+		$db = DbManager::getDb();
+		$stt = $db->prepare("SELECT * FROM blogs ORDER BY id DESC LIMIT 5");
+		// $stt->bindValue(':l', $limit);
+		$stt->execute();
+		return $stt->fetchAll();
+	}
+
+	/**
 	 * insert blog
 	 *  @param category_id integer category id defalt is null
 	 *  @param title varchar max 255 string
