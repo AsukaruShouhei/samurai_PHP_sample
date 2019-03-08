@@ -1,5 +1,10 @@
 <?php
+	session_start();
 	require_once "functions/blog.php";
+	require_once "functions/Security.php";
+	// csrf_token 発行
+	$token = Security::makeCsrf();
+	$_SESSION['csrf_token'] = $token;
 	$blog = new blog();
 ?>
 
@@ -19,7 +24,6 @@
 			foreach ($getBlog as $key => $value) {
 				echo $value["title"]. "<br>";
 			}
-			// print_r($getBlog);
 		}else{
 			echo "まだ記事がありません。";
 		}
@@ -27,6 +31,7 @@
 	</div>
 	<p style="background: red;color: #fff;"><?php if(!empty($_SESSION["ress_msg"])){	echo $_SESSION["ress_msg"];} ?></p>
 	<form action="insert/insertblog.php" method="post">
+		<input type="hidden" name="csrf_token" value="<?php echo $token; ?>"> 
 	<select name="category_id">
 		<option></option>
 	</select>
