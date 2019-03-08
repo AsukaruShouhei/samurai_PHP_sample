@@ -9,5 +9,8 @@
 	<title>blog System</title>
 	<!-- 2019/03/08 css　追加 -->
 	<link rel="stylesheet" href="css/main.css">
+	<!-- 2019/03/08 js　追加 -->
+	<script src="https://code.jquery.com/jquery-3.3.1.js"></script>
+	<script type="text/javascript" src="main.js"></script>
 </head>
 <body>

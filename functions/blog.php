@@ -74,6 +74,35 @@ class blog
 			}
 		}
 	} 
+
+
+
+	/**
+	 * insert category
+	 *  @param user_id integer category id defalt is null
+	 *  @param category_name varchar max 255 string
+	 *  
+	 *  @return session
+	 * 
+	 */
+	public function insertCategory($user_id=null, $category_name){
+		require_once '../functions/DbManager.php';
+		$db = DbManager::getDb();
+		// title max 255 byte => strlen ( string $string ) : int
+		if (strlen($title) > 255) {
+			return $_SESSION["ress_msg"] = "文字数が長すぎます";
+		}else{
+			try{
+				$stt = $db->prepare("INSERT INTO category(user_id, category_name) VALUES(:user_id, :category_name)");
+				$stt->bindValue(':user_id', $user_id);
+				$stt->bindValue(':category_name', $category_name);
+				$stt->execute();
+				return $_SESSION["ress_msg"] = "カテゴリ登録が完了しました。";
+			} catch (Exception $e) {
+				return $_SESSION["ress_msg"] = "error: ". $e;
+			}
+		}
+	} 
 	
 
 }
