@@ -16,9 +16,9 @@ SET SQL_MODE="NO_AUTO_VALUE_ON_ZERO";
 /*!40101 SET NAMES utf8 */;
 
 --
--- データベース: `asukaru_initium01`
+-- データベース: 
 --
-CREATE DATABASE `asukaru_initium01` DEFAULT CHARACTER SET ujis COLLATE ujis_japanese_ci;
+CREATE DATABASE `<YOUR_DATABASE_NAME>` DEFAULT CHARACTER SET ujis COLLATE ujis_japanese_ci;
 USE `<YOUR DATABASE NAME>`;
 
 -- --------------------------------------------------------
