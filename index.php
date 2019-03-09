@@ -62,7 +62,7 @@
 		</div>
 		<div class="form-group">
 			<label for="exampleFormControlTextarea1">記事本文</label>
-			<textarea class="form-control" id="exampleFormControlTextarea1" rows="30" name="message"></textarea>
+			<textarea class="form-control" id="exampleFormControlTextarea1" rows="13" name="message"></textarea>
 		</div>
 		<button type="submit" class="btn btn-primary btn-lg btn-block">投稿する</button>
 		</form>

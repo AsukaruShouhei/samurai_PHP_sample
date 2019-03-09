@@ -96,7 +96,6 @@ $('#changeModal').on('show.bs.modal', function (event) {
   var regi = button.data('regi') 
   var regi = button.data('message') 
   var modal = $(this)
-  console.log(recipient);
   if (regi == 1) {
   	  modal.find('.modal-title').text('記事を編集します')
 	  modal.find('#id').val(recipient)
