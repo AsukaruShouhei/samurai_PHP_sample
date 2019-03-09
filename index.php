@@ -3,7 +3,9 @@
 	require_once "functions/blog.php";
 	require_once "functions/Security.php";
 	// csrf_token 発行
-	$token = Security::makeCsrf();
+	// $token = Security::makeCsrf();
+	$sec = new Security();
+	$token = $sec->makeCsrf();
 	$_SESSION['csrf_token'] = $token;
 	$blog = new blog();
 

@@ -1,10 +1,10 @@
 <?php
 	session_start();
-	// セッションの初期化
-	unset($_SESSION["ress_msg"]);
 	// csrf対策
 	require_once 'functions/Security.php';
-	$token = Security::makeCsrf();
+	// $token = Security::makeCsrf();
+	$sec = new Security();
+	$token = $sec->makeCsrf();
 	$_SESSION['csrf_token'] = $token;
 	require_once 'functions/blog.php';
 	include_once 'header.php';
@@ -35,7 +35,9 @@
 			  </thead>
 			  <tbody>
 			  	<?php
-					$category = blog::getCategory();
+					// $category = blog::getCategory();
+			  		$getCategory = new blog();
+			  		$category = $getCategory->getCategory();
 					foreach ($category as $key => $value) {
 				?>
 			    <tr>

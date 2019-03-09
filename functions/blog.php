@@ -1,5 +1,5 @@
 <?php
-session_start();
+// session_start();
 /**
  *  
  * blog class
@@ -16,7 +16,8 @@ class blog
 	 */
 	public function getMessageAll($id=null){
 		require_once 'functions/DbManager.php';
-		$db = DbManager::getDb();
+		$dm = new DbManager();
+		$db = $dm->getDb();
 		if ( $id !== null ) {
 			$stt = $db->prepare("SELECT * FROM blogs WHERE id=:id");
 			$stt->bindValue(':id', $id);
@@ -24,7 +25,6 @@ class blog
 			return $stt->fetch(PDO::FETCH_ASSOC);
 		}
 		else{
-			$db = DbManager::getDb();
 			$stt = $db->prepare("SELECT * FROM blogs");
 			$stt->execute();
 			return $stt->fetchAll();
@@ -39,7 +39,9 @@ class blog
 	 */
 	public function getMessageLimit($limit=null){
 		require_once 'functions/DbManager.php';
-		$db = DbManager::getDb();
+		// $db = DbManager::getDb();
+		$dm = new DbManager();
+		$db = $dm->getDb();
 		$stt = $db->prepare("SELECT * FROM blogs ORDER BY id DESC LIMIT 5");
 		// $stt->bindValue(':l', $limit);
 		$stt->execute();
@@ -57,7 +59,9 @@ class blog
 	 */
 	public function insertBlogMessage($category_id, $title, $message){
 		require_once '../functions/DbManager.php';
-		$db = DbManager::getDb();
+		// $db = DbManager::getDb();
+		$dm = DbManager();
+		$db = $dm->getDb();
 		// title max 255 byte => strlen ( string $string ) : int
 		if (strlen($title) > 255) {
 			return $_SESSION["ress_msg"] = "タイトルの文字数が長すぎます";
@@ -87,7 +91,9 @@ class blog
 	 */
 	public function insertCategory($user_id=null, $category_name){
 		require_once '../functions/DbManager.php';
-		$db = DbManager::getDb();
+		// $db = DbManager::getDb();
+		$dm = new DbManager();
+		$db = $dm->getDb();
 		// title max 255 byte => strlen ( string $string ) : int
 		if (strlen($title) > 255) {
 			return $_SESSION["ress_msg"] = "文字数が長すぎます";
@@ -115,7 +121,9 @@ class blog
 	 */
 	public function getCategory($id=null){
 		require_once 'DbManager.php';
-		$db = DbManager::getDb();
+		// $db = DbManager::getDb();
+		$dm = new DbManager();
+		$db = $dm->getDb();
 		if ($id === null ) {
 			$stt = $db->prepare("SELECT * FROM category");
 			$stt->execute();
@@ -140,7 +148,10 @@ class blog
 	 */
 	public function changeCategory($id, $kbn, $category_name){
 		require_once '../functions/DbManager.php';
-		$db = DbManager::getDb();
+		// $db = DbManager::getDb();
+		$dm = new DbManager();
+		$db = $dm->getDb();
+		// データの型を整数にキャスト
 		$id = (int)$id;
 		$kbn = (int)$kbn;
 		// update delete 処理区分
@@ -153,7 +164,7 @@ class blog
 			return $_SESSION["ress_msg"] = "カテゴリ変更が完了しました。";
 		}else{
 			// delete
-			$stt = $db->prepare("DELETE category WHERE id={$id}");
+			$stt = $db->prepare("DELETE FROM category WHERE id=:id");
 			$stt->bindValue(':id', $id);
 			$stt->execute();
 			return $_SESSION["ress_msg"] = "カテゴリ{$id}を削除しました。";
