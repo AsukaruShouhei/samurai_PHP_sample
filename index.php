@@ -66,26 +66,5 @@
 		</div>
 		<button type="submit" class="btn btn-primary btn-lg btn-block">投稿する</button>
 		</form>
-
-
-
-		<h3>
-			記事一覧
-		</h3>
-		<div>
-		<?php
-			$getBlog = $blog->getMessageAll();
-			if (!empty($getBlog)) {
-				foreach ($getBlog as $key => $value) {
-					?>
-					<!-- 2019/03/08 詳細ページへのリンクを貼る -->
-					<a href="shosai.php?id=<?php echo $value['id']; ?>"><?php echo $value["title"]; ?></a><br>
-					<?php
-				}
-			}else{
-				echo "まだ記事がありません。";
-			}
-		?>
-		</div>
 	</div><!-- // main -->
 <?php include_once 'footer.php'; ?>
