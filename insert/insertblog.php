@@ -5,7 +5,8 @@
 
 	//scrf_token check
 	require_once '../functions/Security.php';
-	if( Security::csrf($_SESSION['csrf_token'], $_POST["csrf_token"]) ) {
+	$sec = new Security();
+	if( $sec->csrf($_SESSION['csrf_token'], $_POST["csrf_token"]) ) {
 
 		$category_id = htmlspecialchars($_POST["category_id"], ENT_QUOTES, 'utf-8');
 		$title = htmlspecialchars($_POST["title"], ENT_QUOTES, 'utf-8');

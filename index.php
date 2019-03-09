@@ -48,11 +48,12 @@
 		<div class="form-group">
 		    <label for="exampleFormControlSelect2">投稿カテゴリを選択</label>
 		    <select class="form-control" id="exampleFormControlSelect2" name="category_id">
-		      <option>1</option>
-		      <option>2</option>
-		      <option>3</option>
-		      <option>4</option>
-		      <option>5</option>
+		      <?php
+		      	$categories = $blog->getCategory();
+		      	foreach ($categories as $key => $value) {
+		      		echo "<option value='{$value['id']}'>".$value['category_name']."</option>";
+		      	}
+		      ?>
 		    </select>
 		</div>
 		<div class="form-group">

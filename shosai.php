@@ -2,7 +2,8 @@
 
 	require_once 'functions/blog.php';
 	$id = htmlspecialchars($_GET['id'], ENT_QUOTES, 'utf-8');
-	$blog = blog::getMessageAll($id);
+	$t = new blog();
+	$blog = $t->getMessageAll($id);
 
 	// 2019/03/08　　header.php 読み込み
 	include_once 'header.php';

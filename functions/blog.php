@@ -60,7 +60,7 @@ class blog
 	public function insertBlogMessage($category_id, $title, $message){
 		require_once '../functions/DbManager.php';
 		// $db = DbManager::getDb();
-		$dm = DbManager();
+		$dm = new DbManager();
 		$db = $dm->getDb();
 		// title max 255 byte => strlen ( string $string ) : int
 		if (strlen($title) > 255) {
@@ -112,7 +112,7 @@ class blog
 
 
 	/**
-	 * 登録 category　取得
+	 * 取得 category　
 	 *  @param user_id integer category id defalt is null
 	 *  @param category_name varchar max 255 string
 	 *  
@@ -165,6 +165,43 @@ class blog
 		}else{
 			// delete
 			$stt = $db->prepare("DELETE FROM category WHERE id=:id");
+			$stt->bindValue(':id', $id);
+			$stt->execute();
+			return $_SESSION["ress_msg"] = "カテゴリ{$id}を削除しました。";
+		}
+	} 
+
+
+	/**
+	 *  blog　編集/削除　メソッド
+	 *  @param id integer category id defalt is null
+	 *  @param kbn integer 処理区分
+	 *  @param title varchar max 255 string
+	 *  @param message string
+	 *  
+	 *  @return session
+	 * 
+	 */
+	public function changeBlog($id, $kbn, $title, $message){
+		require_once '../functions/DbManager.php';
+		// $db = DbManager::getDb();
+		$dm = new DbManager();
+		$db = $dm->getDb();
+		// データの型を整数にキャスト
+		$id = (int)$id;
+		$kbn = (int)$kbn;
+		// update delete 処理区分
+		if ( $kbn === 1 ) {
+			// update
+			$stt = $db->prepare("UPDATE blogs SET title=:title, message=:message WHERE id=:id");
+			$stt->bindValue(':id', $id);
+			$stt->bindValue(':title', $title);
+			$stt->bindValue(':message', $message);
+			$stt->execute();
+			return $_SESSION["ress_msg"] = "カテゴリ変更が完了しました。";
+		}else{
+			// delete
+			$stt = $db->prepare("DELETE FROM blogs WHERE id=:id");
 			$stt->bindValue(':id', $id);
 			$stt->execute();
 			return $_SESSION["ress_msg"] = "カテゴリ{$id}を削除しました。";
