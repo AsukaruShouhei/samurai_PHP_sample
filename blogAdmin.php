@@ -21,7 +21,7 @@
 			<thead>
 				<tr>
 			      <th scope="col">#</th>
-			      <th scope="col">カテゴリ名</th>
+			      <th scope="col">記事タイトル</th>
 			      <th scope="col">登録日</th>
 			      <th scope="col"></th>
 			    </tr>
@@ -71,11 +71,11 @@
 				<input type="hidden" name="kbn" value="" id="kbn">
 			  <div class="form-group">
 			    <label for="category_name">タイトル</label>
-			    <input type="text" class="form-control" id="title" name="title">
+			    <input type="text" class="form-control" id="m_title" name="title">
 			  </div>
 			  <div class="form-group">
 				<label for="message">記事本文</label>
-				<textarea class="form-control" id="message" rows="30" name="message"></textarea>
+				<textarea class="form-control" id="m_message" rows="30" name="message"></textarea>
 			</div>
 		</div>
       </div>
@@ -90,28 +90,44 @@
 
 <script type="text/javascript">
 $('#changeModal').on('show.bs.modal', function (event) {
-  var button = $(event.relatedTarget)
-  var recipient = button.data('id') 
-  var name = button.data('title') 
-  var regi = button.data('regi') 
-  var regi = button.data('message') 
-  var modal = $(this)
+  var button = $(event.relatedTarget);
+  var recipient = button.data('id');
+  var title = button.data('title');
+  var regi = button.data('regi');
+  var message = button.data('message'); 
+  var modal = $(this);
   if (regi == 1) {
-  	  modal.find('.modal-title').text('記事を編集します')
-	  modal.find('#id').val(recipient)
-	  modal.find('#title').val(name)
-	  modal.find('#kbn').val(regi)
-	  modal.find('#message').val(message)
+  	// api
+  	$.post({
+	        url: 'Api/getUpdateBlog.php',
+	        dataType : 'json',
+	        data:{
+	            'id' : recipient,
+	        },
+	        success: function(data){
+	            console.log(data);
+	            modal.find('.modal-title').text('記事を編集します');
+				$('#id').val(data.id);
+				$('input[name="title"]').val(data.title);
+				$('#kbn').val(1);
+				$('#m_message').val(data.message);
+	        },
+	        error: function(data){
+	        	// console.log(data); error message 
+	            console.log("読み込み失敗");
+	        }
+    	});
 	  $('.modal-header').css('background', '#87cefa');
   }else if(regi == 2){
-	　modal.find('.modal-title').text('記事を削除します')
-	  modal.find('#id').val(recipient)
-	  modal.find('#title').val(name)
-	  modal.find('#kbn').val(regi)
-	  modal.find('#message').val(message)
+	　modal.find('.modal-title').text('記事を削除します');
+	  modal.find('#id').val(recipient);
+	  modal.find('#title').hide();
+	  modal.find('#kbn').val(regi);
+	  modal.find('#message').hide();
 	  $('.modal-header').css('background', '#f08080');
   }
 })
 </script>
+
 	
 <?php include_once 'footer.php'; ?>
