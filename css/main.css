@@ -1,3 +1,14 @@
+/*
+
+			common
+*/
+
+.clear{
+	clear: both;
+}
+
+
+
 /* 
 
 
@@ -43,6 +54,12 @@
 	padding: 12px;
 	margin-left: 20%;
 }
+
+.search{
+	float: right;
+}
+
+
 
 
 /*

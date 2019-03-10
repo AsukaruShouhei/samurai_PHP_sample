@@ -209,5 +209,27 @@ class blog
 	} 
 	
 
+
+	/**
+	 *  blog　記事検索　メソッド
+	 *  @param search_word string 
+	 *  
+	 *  @return result array
+	 * 
+	 */
+	public function searchBlog($searchWord)
+	{
+		require_once 'functions/DbManager.php';
+		$message =  htmlspecialchars($searchWord, ENT_QUOTES, "utf-8");
+		$dm = new DbManager();
+		$db = $dm->getDb();
+		$stt = $db->prepare("SELECT * FROM blogs WHERE message LIKE '%{$message}%'");
+		// $stt->bindValue(':message', $message);
+		$stt->execute();
+		return $stt->fetchAll();
+	} 	
+
+
+
 }
 
