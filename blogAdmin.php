@@ -40,7 +40,7 @@
 			      	<button type="button" class="btn btn-warning" data-toggle="modal" data-target="#blogModal" data-id="<?php echo $value['id'] ;?>" data-title="<?php echo $value['title'] ;?>" data-regi=1 data-message="<?php echo $value['message'] ;?>">
 			      		<span class="glyphicon glyphicon-refresh"></span>編集
 			      	</button>
-		      		<button type="button" class="btn btn-danger" data-toggle="modal" data-target="#changeModal" data-id="<?php echo $value['id'] ;?>" data-title="<?php echo $value['title'] ;?>" data-regi=2 data-message="<?php echo $value['message'] ;?>">
+		      		<button type="button" class="btn btn-danger" data-toggle="modal" data-target="#blogModal" data-id="<?php echo $value['id'] ;?>" data-title="<?php echo $value['title'] ;?>" data-regi=2 data-message="<?php echo $value['message'] ;?>">
 		      			<span class="glyphicon glyphicon-trash"></span>削除
 		      		</button>
 			      </td>
