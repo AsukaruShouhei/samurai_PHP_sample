@@ -16,7 +16,8 @@
 ?>
 
 	<div id="main">
-		<a href="index.php">TOP</a>
+		<h3>記事管理</h3>
+		<a href="index.php"><span class="glyphicon glyphicon-home"></span>TOP</a>
 		<table class="table">
 			<thead>
 				<tr>
@@ -36,7 +37,7 @@
 			      <td><?php echo $value["title"] ;?></td>
 			      <td><?php echo $value["created_at"] ;?></td>
 			      <td>
-			      	<button type="button" class="btn btn-warning" data-toggle="modal" data-target="#changeModal" data-id="<?php echo $value['id'] ;?>" data-title="<?php echo $value['title'] ;?>" data-regi=1 data-message="<?php echo $value['message'] ;?>">
+			      	<button type="button" class="btn btn-warning" data-toggle="modal" data-target="#blogModal" data-id="<?php echo $value['id'] ;?>" data-title="<?php echo $value['title'] ;?>" data-regi=1 data-message="<?php echo $value['message'] ;?>">
 			      		<span class="glyphicon glyphicon-refresh"></span>編集
 			      	</button>
 		      		<button type="button" class="btn btn-danger" data-toggle="modal" data-target="#changeModal" data-id="<?php echo $value['id'] ;?>" data-title="<?php echo $value['title'] ;?>" data-regi=2 data-message="<?php echo $value['message'] ;?>">
@@ -53,8 +54,8 @@
 
 
 
-<!-- changeModal -->
-<div class="modal fade" id="changeModal" tabindex="-1" role="dialog" aria-labelledby="changeModal" aria-hidden="true">
+<!-- blogModal -->
+<div class="modal fade" id="blogModal" tabindex="-1" role="dialog" aria-labelledby="blogModal" aria-hidden="true">
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header">
@@ -105,27 +106,35 @@ $('#changeModal').on('show.bs.modal', function (event) {
 	            'id' : recipient,
 	        },
 	        success: function(data){
-	            console.log(data);
-	            modal.find('.modal-title').text('記事を編集します');
-				$('#id').val(data.id);
-				$('input[name="title"]').val(data.title);
-				$('#kbn').val(1);
-				$('#m_message').val(data.message);
+	        	$(window).load(function(){
+					console.log(data);
+		            modal.find('.modal-title').text('記事を編集します');
+					modal.find('#id').val(data.id);
+					modal.find('#m_title').val(data.title);
+					console.log(modal.find('#m_title'));
+					modal.find('#kbn').val(regi);
+					modal.find('#m_message').val(data.message);
+				});
 	        },
 	        error: function(data){
 	        	// console.log(data); error message 
 	            console.log("読み込み失敗");
 	        }
     	});
-	  $('.modal-header').css('background', '#87cefa');
-  }else if(regi == 2){
-	　modal.find('.modal-title').text('記事を削除します');
-	  modal.find('#id').val(recipient);
-	  modal.find('#title').hide();
-	  modal.find('#kbn').val(regi);
-	  modal.find('#message').hide();
-	  $('.modal-header').css('background', '#f08080');
-  }
+  //  		modal.find('.modal-title').text('記事を編集します');
+		// modal.find('#id').val(recipient);
+		// modal.find('#m_title').val(title);
+		// modal.find('#kbn').val(regi);
+		// modal.find('#m_message').val(message);
+		$('.modal-header').css('background', '#87cefa');
+    }else if(regi == 2){
+	　  modal.find('.modal-title').text('記事を削除します');
+	    modal.find('#id').val(recipient);
+	    modal.find('#title').hide();
+	    modal.find('#kbn').val(regi);
+	    modal.find('#message').hide();
+	    $('.modal-header').css('background', '#f08080');
+    }
 })
 </script>
 

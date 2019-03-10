@@ -12,7 +12,7 @@
 <?php include_once 'sideBar.php'; ?>
 
 	<div id="main">
-		<a href="index.php">TOP</a>
+		<a href="index.php"><span class="glyphicon glyphicon-home"></span>TOP</a>
 		<div>
 			記事を書いた人  <?php echo $blog["user_id"];?><br>
 			投稿日 <?php echo $blog["created_at"] ;?>

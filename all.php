@@ -12,6 +12,7 @@
 
 	<div id="main">
 		<h3>記事一覧</h3>
+		<a href="index.php"><span class="glyphicon glyphicon-home"></span>TOP</a>
 		<div>
 		<?php
 			$getBlog = $blog->getMessageAll();

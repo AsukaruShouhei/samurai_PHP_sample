@@ -17,7 +17,7 @@
 	<div>
 		<h2>カテゴリ</h2>
 	</div>
-	<a href="index.php">TOP</a>
+	<a href="index.php"><span class="glyphicon glyphicon-home"></span>TOP</a>
 	<p style="background: red;color: #fff;"><?php if(!empty($_SESSION["ress_msg"])){	echo $_SESSION["ress_msg"];} ?></p>
 	<div>
 		<button type="button" class="btn btn-info" id="category_new_regist" data-toggle="modal" data-target="#exampleModal">カテゴリ新規追加</button>
@@ -78,7 +78,7 @@
 				<input type="hidden" name="csrf_token" value="<?php echo $token; ?>">
 			  <div class="form-group">
 			    <label for="category_name">カテゴリ名</label>
-			    <input type="text" class="form-control" id="category_name" name="category_name">
+			    <input type="text" class="form-control category_name" id="category_name" name="category_name">
 			  </div>
 		</div>
       </div>
@@ -106,11 +106,11 @@
         <div id="category_regist">
 			<form action="insert/change_category.php" method="post">
 				<input type="hidden" name="csrf_token" value="<?php echo $token; ?>">
-				<input type="hidden" name="id" value="" id="id">
-				<input type="hidden" name="kbn" value="" id="kbn">
+				<input type="hidden" name="id" value="" id="id" class="id">
+				<input type="hidden" name="kbn" value="" id="kbn" class="kbn">
 			  <div class="form-group">
 			    <label for="category_name">カテゴリ名</label>
-			    <input type="text" class="form-control" id="category_name" name="category_name">
+			    <input type="text" class="form-control category_name" id="category_name" name="category_name">
 			  </div>
 		</div>
       </div>
@@ -132,15 +132,15 @@ $('#changeModal').on('show.bs.modal', function (event) {
   var modal = $(this)
   if (regi == 1) {
   	  modal.find('.modal-title').text('次のカテゴリを編集します')
-	  modal.find('#id').val(recipient)
-	  modal.find('#category_name').val(name)
-	  modal.find('#kbn').val(regi)
+	  modal.find('.id').val(recipient)
+	  modal.find('.category_name').val(name)
+	  modal.find('.kbn').val(regi)
 	  $('.modal-header').css('background', '#87cefa');
   }else if(regi == 2){
 	　modal.find('.modal-title').text('次のカテゴリを削除します')
-	  modal.find('#id').val(recipient)
-	  modal.find('#category_name').val(name)
-	  modal.find('#kbn').val(regi)
+	  modal.find('.id').val(recipient)
+	  modal.find('.category_name').val(name)
+	  modal.find('.kbn').val(regi)
 	  $('.modal-header').css('background', '#f08080');
   }else{
   	$('.modal-header').css('background', '#fdf5e6');
